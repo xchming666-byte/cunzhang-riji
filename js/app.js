@@ -25,6 +25,8 @@ const BT={
   paifang:{n:'牌坊',c:'🏛️',cost:{stone:40,gold:300},maxW:0,satB:15,minLv:3,unlocked:false}
 };
 const BT_KEYS=Object.keys(BT);
+// 村民离开时撤人优先级：数值越大越先撤人（越不致命越先撤），数值越小越保（生存/防御建筑最后撤）
+const PULL={well:0,farm:0,clinic:1,wall:1,temple:2,teahouse:2,school:2,quarry:3,lumber:3,mill:3,market:4};
 
 // 事件定义
 const EVENTS=[
@@ -108,7 +110,7 @@ function applyWallUpkeep(wall){const up=getWallUpkeep(wall),justU=!wall.underfun
 function canAssignGuard(b){const cap=WALL_CAP[b.level]||0,guards=b.guards||0,next=getWallUpkeep(b)+1,stoneOk=villageLevel>=4?RESOURCES.stone>=next:true;return guards<cap&&getIdlePop()>=1&&!b.underfunded&&stoneOk}
 function getTotalScholars(){return buildings.reduce((s,b)=>s+(b.scholars||0),0)}
 function getIdlePop(){let a=getTotalGuards()+getTotalScholars()+officials;for(const b of buildings)a+=b.workers||0;return Math.max(0,population-a)}
-function reconcilePop(){let assigned=officials;for(const b of buildings)assigned+=(b.workers||0)+(b.guards||0)+(b.scholars||0);let over=assigned-population;if(over<=0)return;for(let i=buildings.length-1;i>=0&&over>0;i--){const b=buildings[i];while(over>0&&(b.workers||0)>0){b.workers--;over--}while(over>0&&(b.guards||0)>0){b.guards--;over--}while(over>0&&(b.scholars||0)>0){b.scholars--;over--}}if(over>0)officials=Math.max(0,officials-over);renderAll();updateUI()}
+function reconcilePop(){let assigned=officials;for(const b of buildings)assigned+=(b.workers||0)+(b.guards||0)+(b.scholars||0);let over=assigned-population;if(over<=0)return;const order=buildings.map((b,i)=>({b,i})).sort((x,y)=>{const px=PULL[x.b.type]??3,py=PULL[y.b.type]??3;if(px!==py)return py-px;return y.i-x.i});for(const{b} of order){if(over<=0)break;while(over>0&&(b.workers||0)>0){b.workers--;over--}while(over>0&&(b.guards||0)>0){b.guards--;over--}while(over>0&&(b.scholars||0)>0){b.scholars--;over--}}if(over>0)officials=Math.max(0,officials-over);renderAll();updateUI()}
 function getGridSize(lv){if(lv<=1)return{cols:8,rows:5};if(lv===2)return{cols:9,rows:5};if(lv===3)return{cols:10,rows:6};return{cols:12,rows:6}}
 
 function getBanditScale(){const p=(villageLevel-1)*.12,pS=Math.max(.2,.6-p),pA=Math.min(.4,.1+p),r=Math.random();if(r<pS)return'small';if(r<pS+(1-pS-pA))return'gang';return'army'}
