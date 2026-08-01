@@ -208,3 +208,35 @@ function resetGame(){RESOURCES.gold=500;RESOURCES.food=50;RESOURCES.wood=30;RESO
 
 // 每60秒自动存档
 setInterval(()=>{if(!gamePaused&&buildings.length>0)saveGame(AUTOSAVE_KEY)},60000);
+
+// ===================== 一键复制分享链接 =====================
+function copyShareLink(){
+  const url=location.href;
+  const ok=()=>showCopyToast('✅ 链接已复制，去粘贴分享吧');
+  const fail=()=>showCopyToast('⚠️ 复制失败，请长按网址手动复制');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(ok).catch(()=>fallbackCopy(url,ok,fail));
+  }else{
+    fallbackCopy(url,ok,fail);
+  }
+}
+function fallbackCopy(text,ok,err){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text;ta.style.position='fixed';ta.style.top='-9999px';
+    document.body.appendChild(ta);ta.focus();ta.select();
+    const done=document.execCommand('copy');
+    document.body.removeChild(ta);
+    done?ok():err();
+  }catch(e){err();}
+}
+function showCopyToast(msg){
+  let w=document.getElementById('copy-toast');
+  if(!w){
+    w=document.createElement('div');w.id='copy-toast';
+    w.style.cssText='position:fixed;left:50%;top:18%;transform:translateX(-50%);background:rgba(20,20,40,0.92);color:#f5c518;padding:10px 18px;border-radius:24px;font-size:14px;font-weight:bold;z-index:9999;box-shadow:0 4px 18px rgba(0,0,0,0.4);pointer-events:none;transition:opacity .25s;opacity:0;font-family:inherit;';
+    document.body.appendChild(w);
+  }
+  w.textContent=msg;w.style.opacity='1';
+  clearTimeout(w._t);w._t=setTimeout(()=>{w.style.opacity='0';},1800);
+}
