@@ -12,7 +12,7 @@ let stats={...DEFAULT_STATS},unlockedAchievements=[],gameWon=false;
 const BT={
   farm:{n:'农田',c:'🌾',cost:{wood:5},maxW:3,prod:{food:2},cons:{water:1},minLv:1,unlocked:true},
   lumber:{n:'伐木场',c:'🪵',cost:{wood:3},maxW:2,prod:{wood:0.5},cons:{water:1},minLv:1,unlocked:true},
-  well:{n:'水井',c:'💧',cost:{wood:5,gold:20},maxW:0,prod:{water:2},minLv:1,unlocked:true},
+  well:{n:'水井',c:'💧',cost:{wood:5,gold:20},maxW:1,prod:{water:2},minLv:1,unlocked:true},
   house:{n:'民居',c:'🏠',cost:{wood:8,gold:30},maxW:0,popB:3,minLv:1,unlocked:true},
   quarry:{n:'采石场',c:'⛏️',cost:{wood:10,gold:50},maxW:2,prod:{stone:1},minLv:2,unlocked:false},
   market:{n:'集市',c:'🏪',cost:{wood:15,stone:5},maxW:2,prod:{gold:5},minLv:2,unlocked:false},
