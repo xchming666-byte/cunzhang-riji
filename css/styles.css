@@ -209,16 +209,21 @@
       repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.03) 20px, rgba(0,0,0,0.03) 40px),
       radial-gradient(circle at 30% 40%, rgba(50,100,20,0.3), transparent 60%),
       radial-gradient(circle at 70% 60%, rgba(80,120,30,0.2), transparent 50%);
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
+  .map-area::-webkit-scrollbar { width: 10px; }
+  .map-area::-webkit-scrollbar-track { background: rgba(0,0,0,0.15); }
+  .map-area::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 5px; }
+  .map-area::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
   .grid-container {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 92px);
     gap: 4px;
     padding: 10px;
+    min-height: 100%;
+    box-sizing: border-box;
   }
   .grid-cell {
     background: rgba(0,0,0,0.08);
