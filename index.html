@@ -569,6 +569,23 @@
   .achv-card .ds { font-size: 11px; color: #6c7488; line-height: 1.4; margin-top: 2px; }
   .achv-card.done .ds { color: #b9c4d8; }
   .achv-card .rw { font-size: 10px; color: #50fa7b; margin-top: 3px; }
+  .tech-btn {
+    margin-top: 6px;
+    width: 100%;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #a855f7;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .tech-btn:hover:not(:disabled) { background: #c084fc; }
+  .tech-btn.done { background: rgba(80,250,123,0.25); color: #50fa7b; cursor: default; }
+  .tech-btn.disabled { background: rgba(255,255,255,0.08); color: #777; cursor: not-allowed; }
 
   /* 通关目标清单 */
   .goal-row {
@@ -802,6 +819,7 @@
   <button class="ctrl-btn" style="background:rgba(80,250,123,0.15);border:1px solid rgba(80,250,123,0.3);color:#50fa7b;padding:3px 10px;border-radius:14px;font-size:12px;cursor:pointer;font-weight:bold;font-family:inherit;white-space:nowrap;" onclick="showSaveModal('load')">📂 读档</button>
   <button class="ctrl-btn" style="background:rgba(255,85,85,0.15);border:1px solid rgba(255,85,85,0.3);color:#ff5555;padding:3px 10px;border-radius:14px;font-size:12px;cursor:pointer;font-weight:bold;font-family:inherit;white-space:nowrap;" onclick="confirmReset()">🔄 重新开始</button>
   <button class="ctrl-btn" id="copy-link-btn" style="background:rgba(74,163,255,0.15);border:1px solid rgba(74,163,255,0.45);color:#4aa3ff;padding:3px 10px;border-radius:14px;font-size:12px;cursor:pointer;font-weight:bold;font-family:inherit;white-space:nowrap;" onclick="copyShareLink()">🔗 复制链接</button>
+  <button class="ctrl-btn" id="tech-btn" style="background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.45);color:#c084fc;padding:3px 10px;border-radius:14px;font-size:12px;cursor:pointer;font-weight:bold;font-family:inherit;white-space:nowrap;" onclick="openTechTree()">🔬 科技</button>
 </div>
 
 <!-- 时间进度条 -->
@@ -839,7 +857,7 @@
       <div class="info-row"><span class="label">满意度</span><span class="value" id="info-sat">65</span></div>
       <div class="info-row"><span class="label">健康度</span><span class="value" id="info-health">80</span></div>
       <div class="info-row"><span class="label">🩹 伤员</span><span class="value" id="info-injured" style="color:#27ae60">0</span></div>
-      <div class="info-row"><span class="label">研究点</span><span class="value" id="info-research">0</span></div>
+      <div class="info-row"><span class="label" style="cursor:pointer;color:#c084fc;" onclick="openTechTree()">研究点 🔬</span><span class="value" id="info-research">0</span></div>
       <div class="info-row"><span class="label">文官</span><span class="value" id="info-officials">0</span></div>
       <div class="info-row"><span class="label">游戏时间</span><span class="value" id="info-time">第1天</span></div>
     </div>
@@ -904,6 +922,16 @@
   </div>
 </div>
 
+<!-- 科技树弹窗 -->
+<div class="modal-overlay" id="tech-overlay">
+  <div class="achv-modal">
+    <h2>🔬 科技树</h2>
+    <div style="text-align:center;font-size:13px;color:#c084fc;margin-bottom:6px;" id="tech-research-text">📖 当前研究点：0</div>
+    <div id="tech-list"></div>
+    <button class="save-close-btn" onclick="closeTechTree()">关闭</button>
+  </div>
+</div>
+
 <!-- 存档弹窗 -->
 <div class="modal-overlay" id="save-overlay">
   <div class="save-modal">
@@ -912,6 +940,6 @@
     <button class="save-close-btn" onclick="closeSaveModal()">关闭</button>
   </div>
 </div>
-<script src="js/app.js?v=10"></script>
+<script src="js/app.js?v=11"></script>
 </body>
 </html>
