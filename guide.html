@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>村长日记 · 极简教程</title>
+<style>
+  :root{ --ink:#2b2118; --paper:#f5ecd9; --line:#d8c7a6; --accent:#9c5a2c; --green:#3a7d44; --red:#c0392b; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;padding:16px;max-width:680px;margin:0 auto;}
+  h1{font-size:23px;text-align:center;margin:8px 0 2px;letter-spacing:2px}
+  .sub{text-align:center;color:var(--accent);font-size:14px;margin-bottom:14px}
+  .card{background:#fffdf6;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  h2{font-size:17px;color:var(--accent);border-left:4px solid var(--accent);padding-left:8px;margin-bottom:10px}
+  .row{display:flex;align-items:flex-start;gap:8px;margin:6px 0;font-size:14.5px}
+  .ic{font-size:18px;min-width:22px;text-align:center}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}
+  th{background:#efe2c4;font-weight:600}
+  tr:nth-child(even) td{background:#faf4e6}
+  .step{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
+  .num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px}
+  .tip{background:#fff7e6;border:1px dashed var(--accent);border-radius:10px;padding:10px 14px;font-size:13.5px;color:#6b4a2b;margin:12px 0}
+  .tag{display:inline-block;background:#efe2c4;border-radius:6px;padding:1px 7px;font-size:12.5px;margin:2px 2px}
+  a.link{color:var(--accent);font-weight:bold;word-break:break-all}
+  .foot{text-align:center;font-size:12px;color:#9b8b6f;margin:18px 0}
+</style>
+</head>
+<body>
+
+<h1>📜 村长日记 · 极简教程</h1>
+<div class="sub">把一个小村经营成一方名镇</div>
+
+<div class="card">
+  <div class="row"><span class="ic">🎯</span><div><b>通关目标</b>：把下列五项全拉满即通关（之后进入无尽经营）。<br>
+  🏯 村庄 Lv.4 ｜ 👥 人口 50 ｜ 😊 满意度 85 ｜ 🗺️ 建筑 13 种 ｜ 📅 存活 100 天</div></div>
+</div>
+
+<div class="card">
+  <h2>一、五种资源</h2>
+  <div class="row"><span class="ic">💰</span><div><b>金币</b>：硬通货，建一切都要它（集市能产）</div></div>
+  <div class="row"><span class="ic">🌾</span><div><b>粮食</b>：村民每天要吃，归零会掉人口（农田产）</div></div>
+  <div class="row"><span class="ic">🪵</span><div><b>木材</b>：早期建材（伐木场产）</div></div>
+  <div class="row"><span class="ic">🪨</span><div><b>石材</b>：中后期建材（采石场产）</div></div>
+  <div class="row"><span class="ic">💧</span><div><b>水</b>：农田/伐木场消耗，水井生产（别断水）</div></div>
+</div>
+
+<div class="card">
+  <h2>二、三步走（核心操作）</h2>
+  <div class="step"><div class="num">1</div><div><b>点空地</b> → 弹出建造菜单 → 选建筑建造（消耗资源）</div></div>
+  <div class="step"><div class="num">2</div><div><b>点已有建筑</b> → 派人干活 / 升级 / 特殊功能（牌坊任命文官、学堂派学者等）</div></div>
+  <div class="step"><div class="num">3</div><div><b>点顶部「升级村庄」</b> → 达标就升级，解锁更多建筑</div></div>
+</div>
+
+<div class="card">
+  <h2>三、建筑解锁表</h2>
+  <div style="margin-bottom:8px"><b>Lv.1 开局</b><br>
+    <span class="tag">🌾农田</span><span class="tag">🪵伐木场</span><span class="tag">💧水井</span><span class="tag">🏠民居</span><span style="font-size:12.5px;color:#6b4a2b">（民居加人口上限）</span></div>
+  <div style="margin-bottom:8px"><b>Lv.2 解锁</b><br>
+    <span class="tag">⛏️采石场</span><span class="tag">🏪集市</span><span class="tag">🏥医馆</span><span class="tag">📚学堂</span></div>
+  <div><b>Lv.3 解锁</b><br>
+    <span class="tag">🍵茶馆</span><span class="tag">🏰城墙</span><span class="tag">⛩️祠堂</span><span class="tag">🏛️牌坊</span></div>
+</div>
+
+<div class="card">
+  <h2>四、升级村庄门槛</h2>
+  <table>
+    <tr><th>升级</th><th>👥人口</th><th>💰金币</th><th>😊满意度</th><th>额外</th></tr>
+    <tr><td>→ Lv.2</td><td>≥10</td><td>300</td><td>50</td><td>—</td></tr>
+    <tr><td>→ Lv.3</td><td>≥20</td><td>800</td><td>60</td><td>—</td></tr>
+    <tr><td>→ Lv.4</td><td>≥40</td><td>2000</td><td>70</td><td>需建🏛️牌坊</td></tr>
+  </table>
+  <div class="tip" style="margin-top:10px">每次升级奖励 = 等级×100 金币 + 满意度 +10，并解锁新建筑。</div>
+</div>
+
+<div class="card">
+  <h2>五、三个关键机制</h2>
+  <div class="row"><span class="ic">😊</span><div><b>满意度</b>：医馆/茶馆/祠堂/城墙/牌坊能"安抚民心"，但村民有怨气会每天消耗，<b>中后期人口越多掉得越快</b>。别只建一个就躺平。</div></div>
+  <div class="row"><span class="ic">🔬</span><div><b>科技树</b>：学堂派学者产"研究点"，点顶部「🔬科技」用研究点解锁 10 项科技（农业/工业/商业/治理/民生增益）。</div></div>
+  <div class="row"><span class="ic">🩹</span><div><b>村民受伤</b>：每天有小概率受伤，无医馆会从轻伤拖成重伤甚至死亡；建医馆能每天救治。</div></div>
+</div>
+
+<div class="card">
+  <h2>六、随机事件</h2>
+  <div class="row"><span class="ic">🎲</span><div>流民投靠、商队、旱灾、盗匪、瘟疫、庆典、工匠、收税……会弹选项让你决策，<b>先看后果再点</b>。</div></div>
+</div>
+
+<div class="card">
+  <h2>七、存档</h2>
+  <div class="row"><span class="ic">💾</span><div>顶部「💾存档」可存 3 个槽 + 自动存档。换设备/重开用「继续游戏」读档。</div></div>
+</div>
+
+<div class="tip">
+  💡 <b>开局小贴士</b>：先稳住木材和水（伐木场+水井），粮食靠农田，人口靠民居。金币紧张就多建集市。满意度掉太快就补茶馆/祠堂。
+</div>
+
+<div class="foot">
+  🎮 开始游戏：<br>
+  <a class="link" href="https://xchming666-byte.github.io/cunzhang-riji/">https://xchming666-byte.github.io/cunzhang-riji/</a>
+</div>
+
+</body>
+</html>
