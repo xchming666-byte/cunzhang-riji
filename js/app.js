@@ -26,7 +26,8 @@ const BT={
   paifang:{n:'牌坊',c:'🏛️',img:'img/paifang.svg',cost:{stone:40,gold:300},maxW:0,minLv:3,unlocked:false}
 };
 const BT_KEYS=Object.keys(BT);
-function iconHTML(bt){return bt.img?`<img class="b-ico" src="${bt.img}" alt="${bt.n}">`:`<span class="b-emoji">${bt.c}</span>`}
+const ICON_V=2; // 改图标后 +1，强制浏览器刷新 SVG 缓存
+function iconHTML(bt){return bt.img?`<img class="b-ico" src="${bt.img}?v=${ICON_V}" alt="${bt.n}">`:`<span class="b-emoji">${bt.c}</span>`}
 // 村民离开时撤人优先级：数值越大越先撤人（越不致命越先撤），数值越小越保（生存/防御建筑最后撤）
 const PULL={well:0,farm:0,clinic:1,wall:1,temple:2,teahouse:2,school:2,quarry:3,lumber:3,market:4};
 // 村民受伤机制参数
