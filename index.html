@@ -587,6 +587,36 @@
   .tech-btn.done { background: rgba(80,250,123,0.25); color: #50fa7b; cursor: default; }
   .tech-btn.disabled { background: rgba(255,255,255,0.08); color: #777; cursor: not-allowed; }
 
+  /* 科技树弹窗右上角关闭 X */
+  #tech-modal-box { position: relative; }
+  .modal-close-x {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    color: #e0e0e0;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 5;
+    padding: 0;
+  }
+  .modal-close-x:hover {
+    background: #e94560;
+    color: #fff;
+    border-color: #e94560;
+    transform: scale(1.08);
+  }
+
   /* 通关目标清单 */
   .goal-row {
     display: flex;
@@ -924,7 +954,8 @@
 
 <!-- 科技树弹窗 -->
 <div class="modal-overlay" id="tech-overlay">
-  <div class="achv-modal">
+  <div class="achv-modal" id="tech-modal-box">
+    <button class="modal-close-x" onclick="closeTechTree()" aria-label="关闭科技树">×</button>
     <h2>🔬 科技树</h2>
     <div style="text-align:center;font-size:13px;color:#c084fc;margin-bottom:6px;" id="tech-research-text">📖 当前研究点：0</div>
     <div id="tech-list"></div>
@@ -940,6 +971,6 @@
     <button class="save-close-btn" onclick="closeSaveModal()">关闭</button>
   </div>
 </div>
-<script src="js/app.js?v=18"></script>
+<script src="js/app.js?v=19"></script>
 </body>
 </html>
