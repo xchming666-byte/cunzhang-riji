@@ -5,13 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>村长日记</title>
 <style>
-/* 村长日记 — Styles */
+/* 村长日记 — Styles（融合版：秦风水墨视觉 + 设计系统工程规范） */
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+XiaoWei&display=swap');
+
+:root {
+  /* ===== 秦风调色板（设计系统 Source of Truth） ===== */
+  --c-bg: #1a1a2e;
+  --c-navy: #16213e;
+  --c-navy-2: #0f3460;
+  --c-panel: #16213e;
+  --c-gold: #f5c518;          /* 奖勋金 */
+  --c-red: #e94560;           /* 朱红 */
+  --c-red-2: #c23152;
+  --c-green: #50fa7b;         /* 达成/增益 */
+  --c-purple: #c084fc;        /* 科技 */
+  --c-text: #e0e0e0;
+  --c-muted: #8fa3c8;
+  --c-border: rgba(255,255,255,0.1);
+  /* 资源专属色（resource chip 一眼区分） */
+  --res-food: #84cc16;        /* 🌾 食物-绿 */
+  --res-wood: #c8893a;        /* 🪵 木材-暖棕 */
+  --res-stone: #94a3b8;       /* 🪨 石材-灰蓝 */
+  --res-water: #38bdf8;       /* 💧 水-蓝 */
+  --res-gold: #f5c518;        /* 💰 金币-金 */
+  --res-pop: #f0a6c0;         /* 👥 人口-粉 */
+  --res-sat: #fbbf24;         /* 😊 满意度-琥珀 */
+
+  /* ===== 间距尺度（8–64） ===== */
+  --space-1: 8px; --space-2: 16px; --space-3: 24px;
+  --space-4: 32px; --space-5: 48px; --space-6: 64px;
+  /* ===== 圆角（粘土风 reinterpret 为水墨圆润） ===== */
+  --radius-card: 18px; --radius-chip: 14px; --radius-sm: 10px;
+  /* ===== 软投影（双层纵深 → 水墨/宣纸厚度感） ===== */
+  --shadow-soft: 0 4px 0 rgba(0,0,0,.18), 0 10px 26px rgba(0,0,0,.28);
+  --shadow-card: 0 8px 28px rgba(0,0,0,.40);
+  --ring: var(--c-red);
+
+  /* ===== 字体 ===== */
+  --font-heading: 'Ma Shan Zheng', 'ZCOOL XiaoWei', "Microsoft YaHei", serif;  /* 手写日志味（中文毛笔） */
+  --font-body: 'Noto Sans SC', "Microsoft YaHei", "PingFang SC", sans-serif;
+}
+
+/* 标题统一毛笔体（实现设计系统「手写日志味」，且中文可渲染） */
+.game-title, .panel-title, .info-section h3,
+.modal h2, .save-modal h2, .achv-modal h2, .win-modal h2 {
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+}
+
+/* 无障碍：键盘聚焦环 + 尊重 prefers-reduced-motion */
+:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
-    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
-    background: #1a1a2e;
-    color: #e0e0e0;
+    font-family: var(--font-body);
+    background: var(--c-bg);
+    color: var(--c-text);
     user-select: none;
     overflow: hidden;
   }
@@ -22,8 +80,8 @@
     align-items: center;
     gap: 20px;
     padding: 10px 20px;
-    background: linear-gradient(135deg, #16213e, #0f3460);
-    border-bottom: 2px solid #e94560;
+    background: linear-gradient(135deg, var(--c-navy), var(--c-navy-2));
+    border-bottom: 2px solid var(--c-red);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     z-index: 100;
   }
@@ -49,11 +107,17 @@
   .resource.flash { background: rgba(80,250,123,0.25); transform: scale(1.05); }
   .resource .delta { font-size: 12px; color: #50fa7b; }
   .resource .delta.neg { color: #ff5555; }
+  /* 资源 chip：图标按资源专属色（设计系统 §7.1 资源一眼区分） */
+  #res-gold .icon { color: var(--res-gold); }
+  #res-food .icon { color: var(--res-food); }
+  #res-wood .icon { color: var(--res-wood); }
+  #res-stone .icon { color: var(--res-stone); }
+  #res-water .icon { color: var(--res-water); }
   .spacer { flex: 1; }
   .village-level {
-    background: linear-gradient(135deg, #e94560, #c23152);
+    background: linear-gradient(135deg, var(--c-red), var(--c-red-2));
     padding: 6px 16px;
-    border-radius: 20px;
+    border-radius: var(--radius-chip);
     font-weight: bold;
     font-size: 15px;
   }
@@ -140,10 +204,10 @@
   /* ===== 左侧建筑面板 ===== */
   .build-panel {
     width: 220px;
-    background: #16213e;
+    background: var(--c-panel);
     padding: 15px;
     overflow-y: auto;
-    border-right: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid var(--c-border);
   }
   .panel-title {
     font-size: 15px;
@@ -305,10 +369,10 @@
   /* ===== 右侧信息面板 ===== */
   .info-panel {
     width: 260px;
-    background: #16213e;
+    background: var(--c-panel);
     padding: 15px;
     overflow-y: auto;
-    border-left: 1px solid rgba(255,255,255,0.1);
+    border-left: 1px solid var(--c-border);
   }
   .info-section {
     margin-bottom: 20px;
@@ -378,11 +442,11 @@
   .modal {
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     border: 2px solid #e94560;
-    border-radius: 16px;
+    border-radius: var(--radius-card);
     padding: 30px;
     max-width: 420px;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: var(--shadow-card);
     animation: modalIn 0.3s ease;
   }
   @keyframes modalIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -975,6 +1039,6 @@
     <button class="save-close-btn" onclick="closeSaveModal()">关闭</button>
   </div>
 </div>
-<script src="js/app.js?v=21"></script>
+<script src="js/app.js?v=22"></script>
 </body>
 </html>
