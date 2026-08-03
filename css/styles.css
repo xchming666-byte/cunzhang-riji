@@ -1,4 +1,21 @@
-/* 村长日记 — Styles */
+/* 村长日记 — Styles（融合版：秦风水墨 + 设计系统工程规范；本文件为旧副本，实际由 index.html 内联样式驱动） */
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+XiaoWei&display=swap');
+
+:root {
+  --c-bg:#1a1a2e; --c-navy:#16213e; --c-navy-2:#0f3460; --c-panel:#16213e;
+  --c-gold:#f5c518; --c-red:#e94560; --c-red-2:#c23152; --c-green:#50fa7b; --c-purple:#c084fc;
+  --c-text:#e0e0e0; --c-muted:#8fa3c8; --c-border:rgba(255,255,255,0.1);
+  --res-food:#84cc16; --res-wood:#c8893a; --res-stone:#94a3b8; --res-water:#38bdf8; --res-gold:#f5c518; --res-pop:#f0a6c0; --res-sat:#fbbf24;
+  --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px; --space-5:48px; --space-6:64px;
+  --radius-card:18px; --radius-chip:14px; --radius-sm:10px;
+  --shadow-soft:0 4px 0 rgba(0,0,0,.18), 0 10px 26px rgba(0,0,0,.28);
+  --shadow-card:0 8px 28px rgba(0,0,0,.40); --ring:var(--c-red);
+  --font-heading:'Ma Shan Zheng','ZCOOL XiaoWei',"Microsoft YaHei",serif;
+  --font-body:'Noto Sans SC',"Microsoft YaHei","PingFang SC",sans-serif;
+}
+.game-title,.panel-title,.info-section h3,.modal h2,.save-modal h2,.achv-modal h2,.win-modal h2{font-family:var(--font-heading);letter-spacing:1px;}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}}
 * { margin: 0; padding: 0; box-sizing: border-box; }
   
   body {
